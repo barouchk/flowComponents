@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+	<types>
+		<members>customPageHeader</members>
+		<members>customProgressIndicator</members>
+		<members>customTile</members>
+		<members>customVisualPicker</members>
+		<members>customVisualPickerList</members>
+		<members>dataUtils</members>
+		<members>dynamicIllustration</members>
+		<members>dynamicOptionSelect</members>
+		<name>LightningComponentBundle</name>
+	</types>
+	<version>62.0</version>
+</Package>

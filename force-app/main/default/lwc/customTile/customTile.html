@@ -1,0 +1,22 @@
+<template>
+    <div class="slds-media slds-box slds-has-flexi-truncate slds-m-bottom_small">
+        <div if:true={icon} class="slds-media__figure slds-media__figure_fixed-width slds-align_absolute-center">
+            <lightning-icon if:true={icon} slot="media" icon-name={icon} variant={variant}></lightning-icon>
+        </div>
+        <div class={bodyMediaClass}>
+            <div class="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
+                <h3 class={titleClass} title={title}>{title}</h3>
+                <div if:true={label} class="slds-shrink-none">
+                    <h2 class={labelClass}>{label}</h2>
+                </div>
+            </div>
+            
+            <div class={detailClass}>
+                <template if:true={lines} for:each={lines} for:item="line">
+                    <p key={line}>{line}</p>
+                </template>
+                <slot></slot>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,27 @@
+<template>
+    <!-- add dummy html input to resolve the auto focus on the first html element -->
+    <input tabindex="0" type="hidden"/>
+    <div if:true={visualPickers}>
+        <lightning-layout  multiple-rows>
+            <template for:each={visualPickers} for:item="picker">
+                <lightning-layout-item key={picker.id} padding="around-small">
+                    <c-custom-visual-picker 
+                        picker-id={picker.id} 
+                        picker-size={pickerSize} 
+                        picker-type={pickerType}
+                        picker-value={picker.value}
+                        picker-disabled={picker.disabled}
+                        picker-required={picker.required}
+                        onpicked={handlePicked}
+                    >
+                    <span>
+                        <lightning-icon if:true={picker.icon} icon-name={picker.icon} title={picker.icon} size={pickerSize} class="slds-m-bottom_x-small"></lightning-icon> 
+                        <span if:true={picker.label} class={picker.labelClass}>{picker.label}</span>
+                        <span if:true={picker.title} class={picker.titleClass}>{picker.title}</span>
+                    </span>
+                    </c-custom-visual-picker>
+                </lightning-layout-item>
+            </template>
+        </lightning-layout>
+    </div>
+</template>

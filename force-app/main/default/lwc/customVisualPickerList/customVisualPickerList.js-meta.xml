@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property label="Visual Picker Size" name="pickerSize" type="String" description="Allowed values are: 'large','medium'" default="medium" role="inputOnly"/>
+            <property label="Visual Picker Type" name="pickerType" type="String" description="Allowed values are: 'radio','checkbox'" default="radio" role="inputOnly"/>
+            <property label="Visual Picker Error Message" name="errorMessage" type="String" role="inputOnly"/>
+            <property label="Visual Picker Collection" name="pickerListData" type="apex://DynamicOption[]" role="inputOnly"/>
+            <property label="Last Selected Visual Picker" name="picker" type="apex://DynamicOption" role="outputOnly"/>
+            <property label="Visual Picker Selected Collection" name="pickers" type="apex://DynamicOption[]" role="outputOnly"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

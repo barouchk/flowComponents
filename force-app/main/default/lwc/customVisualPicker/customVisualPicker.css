@@ -1,0 +1,10 @@
+.slds-visual-picker_x-large .slds-visual-picker__figure {
+    padding: var(--slds-visual-picker-x-large-padding,1rem);
+    height: var(--slds-visual-picker-x-large-height,18rem);
+    width: var(--slds-visual-picker-x-large-width,18rem);
+}
+.slds-visual-picker_xx-large .slds-visual-picker__figure {
+    padding: var(--slds-visual-picker-xx-large-padding,1rem);
+    height: var(--slds-visual-picker-xx-large-height,22rem);
+    width: var(--slds-visual-picker-xx-large-width,22rem);
+}

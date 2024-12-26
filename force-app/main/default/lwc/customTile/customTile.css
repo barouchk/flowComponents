@@ -1,0 +1,7 @@
+.lgc-bg {
+    background-color:var(--tile-background-color, rgb(242, 242, 242));
+}
+
+.lgc-bg-inverse {
+    background-color: var(--tile-background-color-inverse, rgb(22, 50, 92));
+}

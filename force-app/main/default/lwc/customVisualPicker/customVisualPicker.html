@@ -1,0 +1,26 @@
+<template>
+    <div if:true={pickerId} class={pickerClass}>
+        <input  type={pickerType}
+                name="options" 
+                id={pickerId} 
+                value={pickerValue} 
+                onchange={handleChange} 
+                disabled={pickerDisabled} 
+                checked={pickerChecked}
+                required={pickerRequired}
+        />
+        <label for={pickerId}>
+            <span class="slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center">
+                <slot></slot>
+            </span>
+            <span class="slds-visual-picker__body">
+                <slot name="body"></slot>
+            </span>
+            <lightning-icon variant="inverse"
+                            class="slds-icon_container slds-visual-picker__text-check"
+                            icon-name="utility:check" alternative-text="check" size="x-small"
+                            title="">
+            </lightning-icon> 
+        </label>
+    </div>
+</template>
