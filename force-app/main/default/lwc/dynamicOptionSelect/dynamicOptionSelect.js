@@ -24,6 +24,8 @@ export default class DynamicOptionSelect extends LightningElement {
 
     @api defaultValue = ''
 
+    @api errorMessageWhenRequired = 'field is required'
+
     @track _selectedValues = []
     @api get selectedValues() {
         return this._selectedValues
@@ -142,6 +144,16 @@ export default class DynamicOptionSelect extends LightningElement {
             'selectedItems',
             this.selectedItems
         ));
+    }
+
+    @api validate() {
+        const { selectedValues, errorMessageWhenRequired } = this;
+        if (this.required && selectedValues.length == 0) {
+            return { isValid: false, errorMessageWhenRequired };
+        }
+
+        return { isValid: true };
+
     }
 
 }
