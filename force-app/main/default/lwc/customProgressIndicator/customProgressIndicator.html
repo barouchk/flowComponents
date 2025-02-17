@@ -1,18 +1,23 @@
 <!-- Custom Progress Indicator -->
 <template>
-    <div if:true={steps} class={progressClasses}>
+    <div if:true={_steps} class="slds-progress slds-progress_vertical">
         <ol class="slds-progress__list">
-            <template for:each={steps} for:item="step">
-                <li class="slds-progress__item slds-is-completed" key={step.label}>
-                    <div class="slds-progress__marker">
+            <template for:each={_steps} for:item="step">
+                <li class={step.stepClass} key={step.label}>
+                    <div class={markerClass}>
                         <span class="slds-assistive-text">{step.label}</span>
                     </div>
-                    <div class="slds-progress__item_content slds-grid slds-grid_align-spread">{step.value}</div>
+                    <div class="slds-progress__item_content">
+                        <div>{step.label}</div>
+                        <template if:true={step.description}>
+                            <div>{step.description}</div>
+                        </template>
+                    </div>
                 </li>
             </template>
-        </ol> 
+        </ol>
         <div aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" role="progressbar">
             <span class="slds-assistive-text">Progress: 100%</span>
-          </div>    
+        </div>
     </div>
 </template>
