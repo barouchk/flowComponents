@@ -24,6 +24,8 @@ export default class DynamicOptionSelect extends LightningElement {
 
     @api defaultValue = ''
 
+    @api variant = 'brand'
+
     @api errorMessageWhenRequired = 'field is required'
 
     @track _selectedValues = []
@@ -66,7 +68,7 @@ export default class DynamicOptionSelect extends LightningElement {
                 this.selectedItems.push(item)
                 this.selectedValues.push(this.defaultValue)
                 if (this.isButton) {
-                    item.variant = 'brand'
+                    item.variant = this.variant
                 }
             }
         }
@@ -123,7 +125,7 @@ export default class DynamicOptionSelect extends LightningElement {
                     this.selectedValues.push(value)
                 }
             } else if (this.isButton) {
-                item.variant = item.value === value ? 'brand' : ''
+                item.variant = item.value === value ? this.variant : ''
                 if (item.value === value) {
                     this.selectedItems.push(item)
                     this.selectedValues.push(value)

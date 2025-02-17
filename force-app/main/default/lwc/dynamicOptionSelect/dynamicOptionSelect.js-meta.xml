@@ -17,6 +17,7 @@
             <property name="selectedItems" type="apex://DynamicOption[]" label="Selected Items" />
             <property name="selectedValues" type="String[]" label="Selected Values"/>
             <property name="defaultValue" type="String" label="Default Value"/>
+            <property name="variant" type="String" label="Variant" description="default brand"/>
             <property name="errorMessageWhenRequired" type="String" label="Error Message When Required"/>
         </targetConfig>
     </targetConfigs>
