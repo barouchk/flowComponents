@@ -149,7 +149,7 @@ export default class DynamicOptionSelect extends LightningElement {
     @api validate() {
         const { selectedValues, errorMessageWhenRequired } = this;
         if (this.required && selectedValues.length == 0) {
-            return { isValid: false, errorMessageWhenRequired };
+            return { isValid: false, errorMessage: errorMessageWhenRequired };
         }
 
         return { isValid: true };
