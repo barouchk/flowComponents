@@ -1,0 +1,34 @@
+<template>
+
+    <div class="slds-card slds-card__body slds-p-around_small" if:true={actions}>
+        <lightning-button-group>
+            <lightning-button for:each={actions} for:item="action" label={action.label} key={action.value}
+                name={action.value} onclick={handleActionClicked}>
+            </lightning-button>
+        </lightning-button-group>
+    </div>
+
+    <template if:true={flowApiName}>
+        <div>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h1 class="slds-text-heading--medium"> {title}</h1>
+                        <lightning-button-icon icon-name="utility:close" size="large" class="slds-modal__close"
+                            variant="bare-inverse" onclick={closeModal}>
+                        </lightning-button-icon>
+                    </header>
+                    <div class="slds-modal__content">
+                        <slot name="body">
+                            <lightning-flow flow-api-name={flowApiName} flow-input-variables={inputVariables}
+                                onstatuschange={handleFlowStatusChange}>
+                            </lightning-flow>
+                        </slot>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </div>
+    </template>
+
+</template>
