@@ -3,7 +3,7 @@
     <div class="slds-card slds-card__body slds-p-around_small" if:true={actions}>
         <lightning-button-group>
             <lightning-button for:each={actions} for:item="action" label={action.label} key={action.value}
-                name={action.value} onclick={handleActionClicked}>
+                name={action.value} variant={action.variant} onclick={handleActionClicked}>
             </lightning-button>
         </lightning-button-group>
     </div>
