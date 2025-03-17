@@ -11,15 +11,13 @@ public with sharing class CustomLookupController {
     public static List<SObjectResult> getResults(String ObjectName, String fieldName, String displayName, 
                                                 String value, Boolean showFirst, Map<String, Object> extraParams, 
                                                 String distinctByField, String orderBy, Boolean isSosl, Decimal random) {
-        Boolean isExternalObject = ObjectName.endsWith('__x');
+        
         List<SObjectResult> sObjectResultList = new List<SObjectResult>();
         if (String.isNotEmpty(value)) {
             String queryCondition = '';
       
             String whereCondition = '';
-            if(isExternalObject) {
-                whereCondition += ' WHERE Id != NULL'; // something like WHERE 1=1, for the following AND clauses
-            } else if(!isSosl){
+            if(!isSosl){
                 whereCondition += (' WHERE ' + String.escapeSingleQuotes(fieldName) + ' LIKE \'%' + String.escapeSingleQuotes(value) + '%\'');
             }
 
@@ -32,10 +30,7 @@ public with sharing class CustomLookupController {
                 orderCondition += ' ORDER BY ' + String.escapeSingleQuotes(orderBy);
             }
 
-            String limitCondition = '';
-            if(!isExternalObject) {
-                limitCondition += (' LIMIT ' + MAX_RESULTS_QUANTITY);
-            }
+            String limitCondition = (' LIMIT ' + MAX_RESULTS_QUANTITY);
         
             String query = '';
             List<SObject> sObjects = new List<SObject>();
@@ -72,10 +67,6 @@ public with sharing class CustomLookupController {
 
             System.debug('query: ' + query);
             
-
-            if(isExternalObject) {
-                sObjects = filterResultsFromApexInsteadOfLike(sObjects, fieldName, value);
-            }
 
             List<String> fields = displayName.split(',');
             Map<String, Schema.SObjectField> sObjectFieldsMap;
@@ -206,20 +197,6 @@ public with sharing class CustomLookupController {
         String fValue = String.valueOf(so.get(field));
         fieldDisplayValues.put(field, fValue);
         return fValue;
-    }
-
-    private static List<SObject> filterResultsFromApexInsteadOfLike(List<SObject> records, String fieldName, String value) {
-        List<SObject> filteredRecords = new List<SObject>();
-        for(SObject record : records) {
-            if(((String)record.get(fieldName)).contains(value)) {
-                filteredRecords.add(record);
-                if(filteredRecords.size() >= MAX_RESULTS_QUANTITY) {
-                    break;
-                }
-            }
-        }
-
-        return filteredRecords;
     }
 
     public static String escapeSosl( String text ) {
