@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <description>Dynamic Custom Lookup</description>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property label="Selected Record Id" name="recordId" type="String" description="Salesforce recordId for selected value"/>
+            <property label="Return Field" name="returnField" type="String" description="The value from this field will be returned" role="inputOnly"/>
+            <property label="Init Value" name="initValue" type="String" description="Initial value to be selected" role="inputOnly"/>
+            <property label="Return Field Value" name="returnFieldValue" type="String" description="The requested value" role="outputOnly"/>
+            <property label="Return Selected List" name="returnSelectedList" type="String[]" description="The requested values"/>
+            <property label="Object Name" name="objectName" type="String" description="Salesforce object api name" role="inputOnly" required="true"/>
+            <property label="Field Name" name="fieldName" type="String" description="Selected field api name to search by" role="inputOnly" required="true"/>
+            <property label="Field Names to display" name="fieldNameDisplay" type="String" description="Field to show in the combobox" role="inputOnly"/>
+            <property label="Is Show First Property" name="showFirst" type="Boolean" description="Show first property or all" default="true" role="inputOnly"/>
+            <property label="Icon Name" name="iconName" type="String" role="inputOnly" required="true"/>
+            <property label="Input Label" name="label" type="String" role="inputOnly"/>
+            <property label="Is Required" name="required" type="Boolean" role="inputOnly"/>
+            <property label="Is SOSL" name="isSosl" type="Boolean" role="inputOnly" description="if to select by sosl to soql (support text with spaces)"/>
+            <property label="Auto Alignment" name="autoAlignment" type="Boolean" role="inputOnly" description="fix issue when drop down is inside a modal (going under the modal)"/>
+            <property label="Is MultiSelect" name="multiSelect" type="Boolean" role="inputOnly"/>
+            <property label="Input Unique Name" name="name" type="String" role="inputOnly"/>
+            <property label="PlaceHolder" name="placeholder" type="String" role="inputOnly"/>
+            <property label="Hide href" name="hideHref" type="Boolean" description="Disable the href" default="true" role="inputOnly"/>
+            <property label="Variant" name="variant" type="String" description="Input display options: standard, label-inline, label-hidden, and label-stacked" role="inputOnly"/>
+            <property label="Show Label" name="showLabel" type="Boolean" description="Flag to decide if to display input label" default="false" role="inputOnly"/>
+            <property label="Extra Filter" name="extraParams" type="String" description="Create as json string examle: { 'Active__c': true }" role="inputOnly"/>
+            <property label="Error Message When Field is Required" name="errMsg" type="String" description="Error to display when field is required" role="inputOnly"/>
+            <property label="Limit Number Of Selected Values" name="limit" type="Integer" role="inputOnly"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

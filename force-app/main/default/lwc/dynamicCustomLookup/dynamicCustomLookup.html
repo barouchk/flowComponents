@@ -1,0 +1,25 @@
+<template>
+    <c-custom-lookup
+        value-id={recordId}
+        unique-id={name}
+        obj-name={objectName}
+        field-name={fieldName}
+        icon-name={iconName}
+        input-label={label}
+        show-label={showLabel}
+        field-name-display={fieldNameDisplay}
+        onvalueselect={handleValueSelected}
+        extra-params={_extraParams}
+        required={_requiredConditioned}
+        init-value={initValue}
+        variant={variant}
+        hide-href={hideHref}
+        show-first={showFirst}
+        disabled={_disable}
+        auto-alignment={autoAlignment}
+        is-sosl={isSosl}
+    ></c-custom-lookup>
+    <template if:true={multiSelect}>
+        <lightning-pill-container items={_selectedRecords} onitemremove={handleItemRemove}></lightning-pill-container>
+    </template>
+</template>
