@@ -26,7 +26,6 @@
             <property label="Input Unique Name" name="name" type="String" role="inputOnly"/>
             <property label="PlaceHolder" name="placeholder" type="String" role="inputOnly"/>
             <property label="Hide href" name="hideHref" type="Boolean" description="Disable the href" default="true" role="inputOnly"/>
-            <property label="Variant" name="variant" type="String" description="Input display options: standard, label-inline, label-hidden, and label-stacked" role="inputOnly"/>
             <property label="Show Label" name="showLabel" type="Boolean" description="Flag to decide if to display input label" default="false" role="inputOnly"/>
             <property label="Extra Filter" name="extraParams" type="String" description="Create as json string examle: { 'Active__c': true }" role="inputOnly"/>
             <property label="Error Message When Field is Required" name="errMsg" type="String" description="Error to display when field is required" role="inputOnly"/>

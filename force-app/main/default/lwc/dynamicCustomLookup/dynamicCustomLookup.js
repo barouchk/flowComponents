@@ -1,4 +1,7 @@
 import { LightningElement, api, track } from 'lwc';
+import {
+    FlowAttributeChangeEvent,
+} from 'lightning/flowSupport';
 
 export default class DynamicCustomLookup extends LightningElement {
 
@@ -20,41 +23,51 @@ export default class DynamicCustomLookup extends LightningElement {
     @api placeholder;
     @api multiSelect;
     @api required;
-    @api extraParams
+
+    @track _extraParams = {}
+    @api set extraParams(value){
+        if (value) {
+            this._extraParams = JSON.parse(value);
+        }
+    }
+
+    get extraParams(){
+        return this._extraParams;
+    }
+
     @api returnSelectedList;
-    @api limit; 
-    @api isSosl = false   
+    @api limit;
+    @api isSosl = false
     // fix issue when drop down is inside a modal (going under the modal)
     @api autoAlignment = false
 
-    _extraParams = {}
     _requiredConditioned;
     @track _selectedRecords = [];
     _selectedItemsMap = new Map();
     _disable = false;
-    
-    connectedCallback(){
-        if(this.extraParams){
-            this._extraParams = JSON.parse(this.extraParams);
-        }
+
+    connectedCallback() {
         this._requiredConditioned = this.required;
     }
-    
-    handleValueSelected({ detail: { selectedId, fieldsParams }}){
-        this.recordId = this.multiSelect ? '' : selectedId;
 
-        if(this.multiSelect && fieldsParams){
+    handleValueSelected(event) {
+        event.stopPropagation();
+        const { detail: { selectedId, fieldsParams } } = event
+        this.recordId = this.multiSelect ? '' : selectedId;
+        this.fireRecordIdChanged(this.recordId);
+
+        if (this.multiSelect && fieldsParams) {
             let selectedName = fieldsParams[this.fieldNameDisplay.split(',')[0]];
-            this._selectedItemsMap.set(selectedId,this.createPill(selectedId, selectedName));
+            this._selectedItemsMap.set(selectedId, this.createPill(selectedId, selectedName));
             this._requiredConditioned = false;
             this.returnFieldValue = null;
             this.updateSelection();
         }
-        else if(fieldsParams){
-            if(this.returnField){
+        else if (fieldsParams) {
+            if (this.returnField) {
                 this.returnFieldValue = fieldsParams[this.returnField];
             }
-        }else{
+        } else {
             this.returnFieldValue = null;
         }
     }
@@ -62,11 +75,11 @@ export default class DynamicCustomLookup extends LightningElement {
     @api
     validate() {
         let isValid = true;
-        if(this._requiredConditioned){
-            if(this.multiSelect && this._selectedRecords.length == 0){
+        if (this._requiredConditioned) {
+            if (this.multiSelect && this._selectedRecords.length == 0) {
                 isValid = false;
             }
-            else if(this.isEmpty(this.recordId)){
+            else if (this.isEmpty(this.recordId)) {
                 isValid = false;
             }
         }
@@ -74,42 +87,47 @@ export default class DynamicCustomLookup extends LightningElement {
     }
 
     handleItemRemove(event) {
+        event.stopPropagation();
         const id = event.detail.item.id;
         this._selectedItemsMap.delete(id);
         this._requiredConditioned = this.required && this._selectedRecords.length == 0;
         this.updateSelection();
     }
 
-    updateSelection(){
+    updateSelection() {
         this._selectedRecords = [...this._selectedItemsMap.values()];
         const selectedIds = [...this._selectedItemsMap.keys()];
         this.returnSelectedList = selectedIds;
         this.disableByLimit(selectedIds.length);
-        this.fireListSelectedEvent({selectedIds});
+        this.fireListSelectedEvent({ selectedIds });
     }
 
-    disableByLimit(count){
-        if(this.limit && this.limit > 0){
+    disableByLimit(count) {
+        if (this.limit && this.limit > 0) {
             this._disable = count >= this.limit;
         }
     }
 
-    createPill(id, label){
+    createPill(id, label) {
         return {
             type: 'icon',
             href: '/' + id,
-            label: label, 
+            label: label,
             name: '',
             id: id,
             iconName: this.iconName,
             alternativeText: '',
         };
-      
+
     }
 
     fireListSelectedEvent = detail => this.dispatchEvent(new CustomEvent('listselect', { detail }));
 
-    isEmpty(data){
+    fireRecordIdChanged = recordId => this.dispatchEvent(new FlowAttributeChangeEvent(
+        'recordId', recordId
+    ));
+
+    isEmpty(data) {
         const typeOfData = typeof data;
         if (typeOfData === "number" || typeOfData === "boolean") {
             return false;
@@ -123,14 +141,14 @@ export default class DynamicCustomLookup extends LightningElement {
             }
             return data.length === 0;
         }
-    
+
         let count = 0;
         for (let i in data) {
             if (data.hasOwnProperty(i)) {
                 count++;
             }
         }
-    
+
         return count === 0;
     };
 
