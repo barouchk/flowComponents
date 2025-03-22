@@ -12,7 +12,6 @@ export default class DynamicCustomLookup extends LightningElement {
     @api showFirst = false
     @api hideHref = false
     @api variant = "label-hidden";
-    @api showLabel = false;
     @api returnFieldValue;
     @api returnField;
     @api initValue;

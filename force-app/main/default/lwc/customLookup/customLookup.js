@@ -35,7 +35,6 @@ export default class CustomLookup extends LightningElement {
     @api inputLabel;
     @api variant = "label-hidden";
     @api filter = '';
-    @api showLabel = false;
     @api required;
     @api uniqueId;
     @api placeholder;
