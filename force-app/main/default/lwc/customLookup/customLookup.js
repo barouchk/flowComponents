@@ -50,6 +50,9 @@ export default class CustomLookup extends LightningElement {
     // add option to order by records by field
     @api orderBy = ''
     @api isSosl = false
+    get _isSosl(){
+        return (this.isSosl && this.searchTerm && this.searchTerm.length > 3)
+    }
     @api disabled;
     get comboBoxClass() {
         let cls = 'slds-form-element';
@@ -209,7 +212,7 @@ export default class CustomLookup extends LightningElement {
         extraParams: '$extraParams',
         distinctByField: '$distinctByField',
         orderBy: '$orderBy',
-        isSosl: '$isSosl',
+        isSosl: '$_isSosl',
         random: '$random'
     })
     wiredRecords({ error, data }) {

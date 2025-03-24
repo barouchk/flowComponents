@@ -3,6 +3,8 @@ import {
     FlowAttributeChangeEvent,
 } from 'lightning/flowSupport';
 
+const REQUIRED_FIELD = 'field is required'
+
 export default class DynamicCustomLookup extends LightningElement {
 
     @api recordId;
@@ -20,8 +22,8 @@ export default class DynamicCustomLookup extends LightningElement {
     @api label;
     @api name;
     @api placeholder;
-    @api multiSelect;
     @api required;
+    _requiredConditioned;
 
     @track _extraParams = {}
     @api set extraParams(value){
@@ -40,10 +42,13 @@ export default class DynamicCustomLookup extends LightningElement {
     // fix issue when drop down is inside a modal (going under the modal)
     @api autoAlignment = false
 
-    _requiredConditioned;
     @track _selectedRecords = [];
     _selectedItemsMap = new Map();
     _disable = false;
+
+    get isMultiSelect(){
+        return this.limit && (this.limit > 0)
+    }
 
     connectedCallback() {
         this._requiredConditioned = this.required;
@@ -52,10 +57,10 @@ export default class DynamicCustomLookup extends LightningElement {
     handleValueSelected(event) {
         event.stopPropagation();
         const { detail: { selectedId, fieldsParams } } = event
-        this.recordId = this.multiSelect ? '' : selectedId;
+        this.recordId = this.isMultiSelect ? '' : selectedId;
         this.fireRecordIdChanged(this.recordId);
 
-        if (this.multiSelect && fieldsParams) {
+        if (this.isMultiSelect && fieldsParams) {
             let selectedName = fieldsParams[this.fieldNameDisplay.split(',')[0]];
             this._selectedItemsMap.set(selectedId, this.createPill(selectedId, selectedName));
             this._requiredConditioned = false;
@@ -75,14 +80,13 @@ export default class DynamicCustomLookup extends LightningElement {
     validate() {
         let isValid = true;
         if (this._requiredConditioned) {
-            if (this.multiSelect && this._selectedRecords.length == 0) {
-                isValid = false;
-            }
-            else if (this.isEmpty(this.recordId)) {
-                isValid = false;
-            }
+            isValid = [...this.template.querySelectorAll('c-custom-lookup')]
+            .reduce((validSoFar, field) => {
+                field.reportValidity();
+                return validSoFar && field.checkValidity();
+            }, true);
         }
-        return { isValid, errorMessage: this.errMsg };
+        return { isValid, errorMessage: this.errMsg || REQUIRED_FIELD };
     }
 
     handleItemRemove(event) {
@@ -102,7 +106,7 @@ export default class DynamicCustomLookup extends LightningElement {
     }
 
     disableByLimit(count) {
-        if (this.limit && this.limit > 0) {
+        if (this.isMultiSelect) {
             this._disable = count >= this.limit;
         }
     }

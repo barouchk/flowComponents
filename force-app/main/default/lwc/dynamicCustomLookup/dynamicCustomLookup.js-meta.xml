@@ -22,7 +22,6 @@
             <property label="Is Required" name="required" type="Boolean" role="inputOnly"/>
             <property label="Is SOSL" name="isSosl" type="Boolean" role="inputOnly" description="if to select by sosl to soql (support text with spaces)"/>
             <property label="Auto Alignment" name="autoAlignment" type="Boolean" role="inputOnly" description="fix issue when drop down is inside a modal (going under the modal)"/>
-            <property label="Is MultiSelect" name="multiSelect" type="Boolean" role="inputOnly"/>
             <property label="Input Unique Name" name="name" type="String" role="inputOnly"/>
             <property label="PlaceHolder" name="placeholder" type="String" role="inputOnly"/>
             <property label="Hide href" name="hideHref" type="Boolean" description="Disable the href" role="inputOnly"/>

@@ -18,7 +18,7 @@
         auto-alignment={autoAlignment}
         is-sosl={isSosl}
     ></c-custom-lookup>
-    <template if:true={multiSelect}>
+    <template if:true={isMultiSelect}>
         <lightning-pill-container items={_selectedRecords} onitemremove={handleItemRemove}></lightning-pill-container>
     </template>
 </template>
