@@ -26,13 +26,18 @@ export default class DynamicCustomLookup extends LightningElement {
     _requiredConditioned;
 
     @track _extraParams = {}
-    @api set extraParams(value){
+    @api set extraParams(value) {
+
+        if (value != JSON.stringify(this._extraParams)) {
+            this.fireRecordIdChanged('');
+        }
+
         if (value) {
             this._extraParams = JSON.parse(value);
         }
     }
 
-    get extraParams(){
+    get extraParams() {
         return this._extraParams;
     }
 
@@ -46,7 +51,7 @@ export default class DynamicCustomLookup extends LightningElement {
     _selectedItemsMap = new Map();
     _disable = false;
 
-    get isMultiSelect(){
+    get isMultiSelect() {
         return this.limit && (this.limit > 0)
     }
 
@@ -81,10 +86,10 @@ export default class DynamicCustomLookup extends LightningElement {
         let isValid = true;
         if (this._requiredConditioned) {
             isValid = [...this.template.querySelectorAll('c-custom-lookup')]
-            .reduce((validSoFar, field) => {
-                field.reportValidity();
-                return validSoFar && field.checkValidity();
-            }, true);
+                .reduce((validSoFar, field) => {
+                    field.reportValidity();
+                    return validSoFar && field.checkValidity();
+                }, true);
         }
         return { isValid, errorMessage: this.errMsg || REQUIRED_FIELD };
     }
