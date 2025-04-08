@@ -1,0 +1,3 @@
+:host {
+  --checkbox-options-grid-rows:var(--max-grid-rows,14);
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>50.0</apiVersion>
+    <description>Custom Checkbox</description>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__FlowScreen</target>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="label" type="String" label="label"></property>
+            <property name="name" type="String" label="name"></property>
+            <property name="required" type="Boolean" label="Required" description="Require a selection.If no option is selected, an error is displayed."></property>
+            <property name="disabled" type="Boolean" label="Disabled" description="The disabled options are grayed out and you can't change the selection"></property>
+            <property name="stringOfValues" type="String" label="String of values" description="The String with the available values for the Picklist splitted by delimeter"></property>
+            <property name="strSelectedValues" type="String" label="Choosen Value" description="The String with the value selected at the picklist splitted by delimeter"></property>
+            <property name="stringSpliter" type="String" label="Delimeter" default=';' description="String's spliter character"/>
+            <property name="value" type="String" label="Selected value"></property>
+            <property name="type" type="String" label="Component Type" default="checkbox" description="default checkbox (options: checkbox/radio/button/dropdown)"></property>
+            <property name="maxOptionsPerColumn" type="Integer" label="Options per column" default="10" description="Divide long list of checkbox options"></property>
+        </targetConfig>
+    </targetConfigs>
+    <masterLabel>Custom Checkbox</masterLabel>
+</LightningComponentBundle>

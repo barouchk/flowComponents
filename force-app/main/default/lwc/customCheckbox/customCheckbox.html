@@ -1,0 +1,41 @@
+<!--
+ - Created by bkandov on 05/01/2021.
+ -->
+
+<!-- Custom Checkbox -->
+<template>
+    <template if:true={isCheckbox}>
+        <lightning-checkbox-group class={checkBoxClasses}
+                                  name={name}
+                                  label={label}
+                                  options={options}
+                                  value={value}
+                                  required={required}
+                                  disabled={disabled}
+                                  onchange={handleChange}
+        ></lightning-checkbox-group>
+    </template>
+
+    <template if:true={isRadio}>
+        <lightning-radio-group class={radioClasses}
+                               name={name}
+                               label={label}
+                               options={options}
+                               value={value}
+                               required={required}
+                               disabled={disabled}
+                               type={type}
+                               onchange={handleChange}
+        ></lightning-radio-group>
+    </template>
+
+    <template if:true={isDropdown}>
+        <lightning-combobox
+                name={name}
+                label={label}
+                value={value}
+                placeholder={placeholder}
+                options={options}
+                onchange={handleChange}></lightning-combobox>
+    </template>
+</template>
