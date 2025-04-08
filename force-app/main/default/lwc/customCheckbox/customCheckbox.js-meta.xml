@@ -13,6 +13,7 @@
             <property name="name" type="String" label="name"></property>
             <property name="required" type="Boolean" label="Required" description="Require a selection.If no option is selected, an error is displayed."></property>
             <property name="disabled" type="Boolean" label="Disabled" description="The disabled options are grayed out and you can't change the selection"></property>
+            <property name="listOfStrings" type="String[]" label="List Of Options" description="List Of Options as list of strings"></property>
             <property name="stringOfValues" type="String" label="String of values" description="The String with the available values for the Picklist splitted by delimeter"></property>
             <property name="strSelectedValues" type="String" label="Choosen Value" description="The String with the value selected at the picklist splitted by delimeter"></property>
             <property name="stringSpliter" type="String" label="Delimeter" default=';' description="String's spliter character"/>
