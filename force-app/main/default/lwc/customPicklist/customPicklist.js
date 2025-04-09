@@ -83,13 +83,13 @@ export default class CustomPicklist extends LightningElement {
         return this.options?.length ?? 0;
     }
     get isCheckbox() {
-        return this.isOptions && this.type === TYPES.CHECKBOX;
+        return this.type === TYPES.CHECKBOX;
     }
     get isRadio() {
-        return this.isOptions && (this.type === TYPES.RADIO);
+        return (this.type === TYPES.RADIO);
     }
     get isDropdown() {
-        return this.isOptions && this.type === TYPES.DROPDOWN;
+        return this.type === TYPES.DROPDOWN;
     }
     get isInput() {
         return this.isCheckbox || this.isRadio
@@ -116,6 +116,7 @@ export default class CustomPicklist extends LightningElement {
 
         this.selectedValues = value
         if (this.isRadio || this.isDropdown) {
+            this.selectedValue = value
             this.selectedLabel = this.options.find(x => x.value === value)?.label;
         }
 
