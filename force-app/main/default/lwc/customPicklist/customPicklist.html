@@ -1,0 +1,12 @@
+<template>
+    <template if:true={isInput}>
+        <lightning-checkbox-group if:true={isOptions} name={name} label={fieldLabel} options={options} value={selectedValues}
+            onchange={handleChange}></lightning-checkbox-group>
+    </template>
+
+    <template if:true={isDropdown}>
+        <lightning-combobox label={fieldLabel} value={selectedValue} options={options} onchange={handleChange}
+            required={required} disabled={disabled}></lightning-combobox>
+    </template>
+
+</template>
