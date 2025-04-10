@@ -96,9 +96,9 @@ export default class CustomPicklist extends LightningElement {
     }
 
     get isValueSelected() {
-        if (this.isInput && this.selectedValue) {
+        if ((this.isCheckbox || this.isDropdown) && this.selectedValue) {
             return true;
-        } else if (this.isDropdown && this.selectedValues.length > 0) {
+        } else if (this.isCheckbox && this.selectedValues.length > 0) {
             return true;
         }
         return false;
