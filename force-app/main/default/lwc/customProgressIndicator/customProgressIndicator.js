@@ -35,6 +35,7 @@ export default class CustomProgressIndicator extends LightningElement {
             for (let step of this._steps) {
                 if (step.value !== this.currentStep) {
                     step.stepClass += ' slds-is-completed'
+                    step.checked = true
                 } else {
                     break;
                 }

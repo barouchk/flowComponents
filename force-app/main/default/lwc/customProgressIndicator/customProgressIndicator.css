@@ -1,3 +1,7 @@
 .slds-progress__marker.marker__heb {
     margin-right: 0 !important
 }
+
+.blue-icon {
+    --sds-c-icon-color-foreground-default: #066afe
+}
