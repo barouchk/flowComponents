@@ -11,8 +11,8 @@
             <property label="Visual Picker Type" name="pickerType" type="String" description="Allowed values are: 'radio','checkbox'" default="radio" role="inputOnly"/>
             <property label="Visual Picker Error Message" name="errorMessage" type="String" role="inputOnly"/>
             <property label="Visual Picker Collection" name="pickerListData" type="apex://DynamicOption[]" role="inputOnly"/>
-            <property label="Last Selected Visual Picker" name="picker" type="apex://DynamicOption" role="outputOnly"/>
-            <property label="Visual Picker Selected Collection" name="pickers" type="apex://DynamicOption[]" role="outputOnly"/>
+            <property label="Last Selected Visual Picker" name="picker" type="apex://DynamicOption"/>
+            <property label="Visual Picker Selected Collection" name="pickers" type="apex://DynamicOption[]"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
