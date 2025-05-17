@@ -1,7 +1,8 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api, track, wire } from 'lwc';
 import {
     FlowAttributeChangeEvent,
 } from 'lightning/flowSupport';
+import { getRecords } from 'lightning/uiRecordApi';
 
 const REQUIRED_FIELD = 'field is required'
 
@@ -23,6 +24,8 @@ export default class DynamicCustomLookup extends LightningElement {
     @api name;
     @api placeholder;
     @api required;
+    @api createRecord = false
+    @api recordTypeId
     _requiredConditioned;
 
     @track _extraParams = {}
@@ -41,15 +44,17 @@ export default class DynamicCustomLookup extends LightningElement {
         return this._extraParams;
     }
 
-    @api returnSelectedList;
+    @api returnSelectedList = []
+
     @api limit;
     @api isSosl = false
     // fix issue when drop down is inside a modal (going under the modal)
     @api autoAlignment = false
 
-    @track _selectedRecords = [];
+    @track _selectedRecords;
     _selectedItemsMap = new Map();
     _disable = false;
+    parameterObject = []
 
     get isMultiSelect() {
         return this.limit && (this.limit > 0)
@@ -57,6 +62,49 @@ export default class DynamicCustomLookup extends LightningElement {
 
     connectedCallback() {
         this._requiredConditioned = this.required;
+        this.parameterObject.push({
+            recordIds: this.returnSelectedList,
+            fields: this.populateQueryFields(),
+        });
+    }
+
+    //To get preselected or selected record
+    @wire(getRecords, { records: "$parameterObject" })
+    wiredSelectedRecords({ error, data }) {
+        if (data) {
+            const fieldsArray = this.fieldNameDisplay.split(",");
+
+            data.results.forEach((record) => {
+                var fields = {}
+                for (var fieldName of fieldsArray) {
+                    let fieldObj = record.result.fields[fieldName]
+                    if (fieldObj) {
+                        fields[fieldName] = fieldObj.value;
+                    }
+                }
+                this.populatePill(record.result.id, fields);
+            });
+            this._requiredConditioned = false;
+            this.returnFieldValue = null;
+            this.updateSelection();
+
+        } else if (error) {
+            console.log("this.error", this.error);
+        }
+    }
+
+    populateQueryFields() {
+        if (!this.fieldNameDisplay) {
+            return [];
+        }
+        const fieldsArray = this.fieldNameDisplay.split(",");
+        const fields = [];
+
+        for (let field of fieldsArray) {
+            fields.push(`${this.objectName}.${field}`)
+        }
+
+        return fields;
     }
 
     handleValueSelected(event) {
@@ -66,8 +114,7 @@ export default class DynamicCustomLookup extends LightningElement {
         this.fireRecordIdChanged(this.recordId);
 
         if (this.isMultiSelect && fieldsParams) {
-            let selectedName = fieldsParams[this.fieldNameDisplay.split(',')[0]];
-            this._selectedItemsMap.set(selectedId, this.createPill(selectedId, selectedName));
+            this.populatePill(selectedId, fieldsParams);
             this._requiredConditioned = false;
             this.returnFieldValue = null;
             this.updateSelection();
@@ -79,6 +126,11 @@ export default class DynamicCustomLookup extends LightningElement {
         } else {
             this.returnFieldValue = null;
         }
+    }
+
+    populatePill(recordId, fields) {
+        let selectedName = fields[this.fieldNameDisplay.split(',')[0]];
+        this._selectedItemsMap.set(recordId, this.createPill(recordId, selectedName));
     }
 
     @api
@@ -98,12 +150,12 @@ export default class DynamicCustomLookup extends LightningElement {
         event.stopPropagation();
         const id = event.detail.item.id;
         this._selectedItemsMap.delete(id);
-        this._requiredConditioned = this.required && this._selectedRecords.length == 0;
         this.updateSelection();
     }
 
     updateSelection() {
         this._selectedRecords = [...this._selectedItemsMap.values()];
+        this._requiredConditioned = this.required && this._selectedRecords.length == 0;
         const selectedIds = [...this._selectedItemsMap.keys()];
         this.returnSelectedList = selectedIds;
         this.disableByLimit(selectedIds.length);

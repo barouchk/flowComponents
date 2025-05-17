@@ -12,7 +12,7 @@
             <property label="Return Field" name="returnField" type="String" description="The value from this field will be returned" role="inputOnly"/>
             <property label="Init Value" name="initValue" type="String" description="Initial value to be selected" role="inputOnly"/>
             <property label="Return Field Value" name="returnFieldValue" type="String" description="The requested value" role="outputOnly"/>
-            <property label="Return Selected List" name="returnSelectedList" type="String[]" description="The requested values"/>
+            <property label="Selected Record Ids" name="returnSelectedList" type="String[]" description="The requested values"/>
             <property label="Object Name" name="objectName" type="String" description="Salesforce object api name" role="inputOnly" required="true"/>
             <property label="Field Name" name="fieldName" type="String" description="Selected field api name to search by" role="inputOnly" required="true"/>
             <property label="Field Names to display" name="fieldNameDisplay" type="String" description="Field to show in the combobox" role="inputOnly"/>
@@ -28,6 +28,9 @@
             <property label="Extra Filter" name="extraParams" type="String" description="Create as json string examle: { 'Active__c': true }" role="inputOnly"/>
             <property label="Error Message When Field is Required" name="errMsg" type="String" description="Error to display when field is required" role="inputOnly"/>
             <property label="Limit Number Of Selected Values" name="limit" type="Integer" role="inputOnly"/>
+            <property label="Record Type Id for New Record" name="recordTypeId" type="String" role="inputOnly"/>
+            <property label="Create New Record?" name="createRecord" type="Boolean" role="inputOnly"/>
+            
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

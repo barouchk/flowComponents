@@ -17,6 +17,8 @@
         disabled={_disable}
         auto-alignment={autoAlignment}
         is-sosl={isSosl}
+        record-type-id={recordTypeId}
+        create-record={createRecord}
     ></c-custom-lookup>
     <template if:true={isMultiSelect}>
         <lightning-pill-container items={_selectedRecords} onitemremove={handleItemRemove}></lightning-pill-container>

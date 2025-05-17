@@ -41,6 +41,15 @@ export default class CustomLookup extends LightningElement {
     @api extraParams = {};
     @api distinctByField = '';
 
+    _recordTypeId
+    @api get recordTypeId() {
+        return this._recordTypeId
+    }
+
+    set recordTypeId(value) {
+        this._recordTypeId = value
+    }
+
     // fix issue hen drop down is inside a modal (going under the modal)
     @api autoAlignment = false
 
@@ -50,7 +59,7 @@ export default class CustomLookup extends LightningElement {
     // add option to order by records by field
     @api orderBy = ''
     @api isSosl = false
-    get _isSosl(){
+    get _isSosl() {
         return (this.isSosl && this.searchTerm && this.searchTerm.length > 3)
     }
     @api disabled;
@@ -165,6 +174,9 @@ export default class CustomLookup extends LightningElement {
 
     @api
     get queryFields() {
+        if (!this.fieldNameDisplay) {
+            return [];
+        }
         const fieldsArray = this.fieldNameDisplay.split(",");
         const fields = [];
 
@@ -184,7 +196,9 @@ export default class CustomLookup extends LightningElement {
             this.error = undefined;
             this.objLabelName = data.label;
             let recordTypeInfos = Object.entries(this.record.recordTypeInfos);
-            if (recordTypeInfos.length > 1) {
+
+            if (this.recordTypeId) { return; }
+            else if (recordTypeInfos.length > 1) {
                 let temp = [];
                 recordTypeInfos.forEach(([key, value]) => {
                     if (value.available === true && value.master !== true) {
@@ -221,7 +235,7 @@ export default class CustomLookup extends LightningElement {
             this.error = undefined;
             this.options = this.record;
             this.boxClass = 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-has-focus';
-            if (this.options.length > 0 || this.createRecord) {
+            if (this.options.length > 0 || (this.searchTerm && this.createRecord)) {
                 this.boxClass = +' slds-is-open';
                 this.showDropDown = true;
             }
@@ -301,13 +315,12 @@ export default class CustomLookup extends LightningElement {
     onSelect(event) {
         let ele = event.currentTarget;
         let selectedId = ele.dataset.id;
-        let externalId = this.objName.includes('__x') ? ele.dataset.external : ''
 
         let element = this.options.find(o => o.Id == selectedId)
         let fieldsParams = element.FieldsParams;
 
         //As a best practice sending selected value to parent and in return parent sends the value to @api valueId
-        this.fireValueSelectEvent({ selectedId, externalId, fieldsParams, uniqueId: this.uniqueId });
+        this.fireValueSelectEvent({ selectedId, fieldsParams, uniqueId: this.uniqueId });
 
         this.isValue = false;
         this.searchTerm = '';
@@ -337,7 +350,15 @@ export default class CustomLookup extends LightningElement {
     }
 
     createRecordFunc() {
-        if (this.recordTypeOptions && this.recordTypeOptions.length > 0) {
+
+        if (this.recordTypeId) {
+            this.recordTypeSelector = false;
+            this.mainRecord = true;
+            //stencil before getting data
+            this.stencilClass = '';
+            this.stencilReplacement = 'slds-hide';
+        }
+        else if (this.recordTypeOptions && this.recordTypeOptions.length > 0) {
             this.recordTypeSelector = true;
         } else {
             this.recordTypeSelector = false;
@@ -382,8 +403,14 @@ export default class CustomLookup extends LightningElement {
         this.mainRecord = false;
         this.stencilClass = '';
         this.stencilReplacement = 'slds-hide';
-        const selectedId = event.detail.id;
-        this.fireValueSelectEvent({ selectedId, uniqueId: this.uniqueId });
+        const { id, fields } = event.detail;
+
+        let fieldsParams = []
+        for (let fieldApiName of Object.getOwnPropertyNames(fields)) {
+            fieldsParams[fieldApiName] = fields[fieldApiName]?.value
+        }
+
+        this.fireValueSelectEvent({ selectedId: id, fieldsParams, uniqueId: this.uniqueId });
 
         this.dispatchEvent(
             new ShowToastEvent({
