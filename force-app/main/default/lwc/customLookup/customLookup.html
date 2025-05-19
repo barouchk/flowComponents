@@ -134,7 +134,7 @@
                                 <lightning-record-form
                                         class="recordForm" object-api-name={objName} record-type-id={_recordTypeId}
                                         layout-type="Full" columns="2" onload={handleLoad} density="comfy" onerror={handleError}
-                                        onsuccess={handleSuccess}
+                                        onsuccess={handleSuccess} oncancel={closeModal}
                                 ></lightning-record-form>
                             </div>
                         </div>
