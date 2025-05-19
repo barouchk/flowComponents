@@ -171,7 +171,6 @@ export default class DynamicCustomLookup extends LightningElement {
     createPill(id, label) {
         return {
             type: 'icon',
-            href: '/' + id,
             label: label,
             name: '',
             id: id,
