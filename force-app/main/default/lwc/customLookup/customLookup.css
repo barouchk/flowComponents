@@ -21,3 +21,20 @@
     position: fixed;
     top: auto;
 }
+
+.stencil.detail .text {
+    border-radius: 14px;
+    display: inline-block;
+    height: var(--lwc-spacingXSmall, 0.5rem);
+    margin-right: var(--lwc-spacingSmall, 0.75rem);
+    background-color: var(--lwc-colorBackgroundStencil, rgb(243, 243, 243));
+}
+
+.stencil.detail .text.text-short {
+    width: 45%;
+    background-color: #e6e6e6;
+}
+
+.stencil.detail .text.text-long {
+    width: 100%;
+}

@@ -75,6 +75,8 @@ export default class CustomLookup extends LightningElement {
     get random() {
         return Math.floor(Math.random() * 10000) / 42.375;
     }
+    // add dummy stencils fields
+    rows = []
 
     // will search for record id on init (only once) and fire event to parent to populate the value right after init
     // this must be the last attribute that should be populated on the parent
@@ -170,6 +172,7 @@ export default class CustomLookup extends LightningElement {
         }
 
         this.dropDownClass += this.autoAlignment ? ' auto-alignment' : '';
+        this.rows = Array.from(Array(10).keys());
     }
 
     @api
@@ -350,7 +353,7 @@ export default class CustomLookup extends LightningElement {
     }
 
     createRecordFunc() {
-
+        this.isLoading = true
         if (this.recordTypeId) {
             this.recordTypeSelector = false;
             this.mainRecord = true;
@@ -382,6 +385,7 @@ export default class CustomLookup extends LightningElement {
         this.stencilReplacement = 'slds-hide';
     }
 
+    isLoading = true
     handleLoad(event) {
         let details = event.detail;
 
@@ -390,6 +394,7 @@ export default class CustomLookup extends LightningElement {
                 this.stencilClass = 'slds-hide';
                 this.stencilReplacement = '';
                 this.myPadding = 'slds-p-around_medium slds-modal__content';
+                this.isLoading = false
             }, 1000);
         }
     }
