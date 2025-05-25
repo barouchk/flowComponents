@@ -297,19 +297,19 @@ export default class CustomLookup extends LightningElement {
     }
 
     onBlur() {
-        // if (this.isVisible) {
-        //     this.template.querySelector('lightning-input')?.focus();
-        //     this.isVisible = false;
-        //     return;
-        // }
+        if (this.isVisible) {
+            this.template.querySelector('lightning-input')?.focus();
+            this.isVisible = false;
+            return;
+        }
 
-        // this.blurTimeout = setTimeout(() => {
-        //     this.boxClass = 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-has-focus';
-        //     this.showDropDown = false;
-        //     if (!this.valueId) {
-        //         this.searchTerm = '';
-        //     }
-        // }, 250);
+        this.blurTimeout = setTimeout(() => {
+            this.boxClass = 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-has-focus';
+            this.showDropDown = false;
+            if (!this.valueId) {
+                this.searchTerm = '';
+            }
+        }, 250);
     }
 
     onSelect(event) {
