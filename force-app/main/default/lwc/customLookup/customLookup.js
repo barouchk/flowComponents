@@ -297,19 +297,19 @@ export default class CustomLookup extends LightningElement {
     }
 
     onBlur() {
-        if (this.isVisible) {
-            this.template.querySelector('lightning-input')?.focus();
-            this.isVisible = false;
-            return;
-        }
+        // if (this.isVisible) {
+        //     this.template.querySelector('lightning-input')?.focus();
+        //     this.isVisible = false;
+        //     return;
+        // }
 
-        this.blurTimeout = setTimeout(() => {
-            this.boxClass = 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-has-focus';
-            this.showDropDown = false;
-            if (!this.valueId) {
-                this.searchTerm = '';
-            }
-        }, 250);
+        // this.blurTimeout = setTimeout(() => {
+        //     this.boxClass = 'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-has-focus';
+        //     this.showDropDown = false;
+        //     if (!this.valueId) {
+        //         this.searchTerm = '';
+        //     }
+        // }, 250);
     }
 
     onSelect(event) {
@@ -421,14 +421,30 @@ export default class CustomLookup extends LightningElement {
         )
     }
 
-    handleError(res) {
-        this.dispatchEvent(
-            new ShowToastEvent({
-                title: 'Error',
-                message: 'Error saving the record',
-                variant: 'error',
-            }),
-        )
+    handleError(event) {
+        const { output: { errors } } = event.detail
+
+        for (let error of errors) {
+            let errorCode = error?.errorCode;
+            let errorMessage = error?.message;
+
+            if (errorCode === 'DUPLICATES_DETECTED') {
+                // get duplicate recordIds
+                let matchResults = error?.duplicateRecordError?.matchResults || [];
+                if (matchResults[0]) {
+                    let matchRecordIds = matchResults[0]?.matchRecordIds || []
+                    errorMessage += ` ${matchRecordIds.join(", ")}`
+                }
+            }
+
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: errorCode,
+                    message: errorMessage,
+                    variant: 'error',
+                }),
+            )
+        }
     }
 
     closeModal() {
