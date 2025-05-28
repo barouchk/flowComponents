@@ -420,7 +420,7 @@ export default class CustomLookup extends LightningElement {
         this.dispatchEvent(
             new ShowToastEvent({
                 title: 'Success',
-                message: `Record saved successfully with id: ${selectedId}`,
+                message: `Record saved successfully with id: ${id}`,
                 variant: 'success',
             }),
         )
