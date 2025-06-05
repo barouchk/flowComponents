@@ -7,11 +7,11 @@ export default class CustomVisualPickerList extends LightningElement {
     @api pickerListData;
     @api pickerSize = "medium";
     @api pickerType = "radio";
-    @api picker = {}; // last selected picker or (in case of type "radio" ) single selected 
+    @api picker; // last selected picker or (in case of type "radio" ) single selected 
     @api pickers = []; // Collection of selected pickers. Generaly, for "checkbox" type
     @api errorMessage;
     @api pickerListDataOutput = []; // collection of all visual picker with update checked status
-
+    @api required = false
     visualPickers;
 
     connectedCallback() {
@@ -35,7 +35,7 @@ export default class CustomVisualPickerList extends LightningElement {
             if (element) {
                 return true
             }
-        } else if (this.picker.value === value) {
+        } else if (this.picker?.value === value) {
             return true
         }
         return false
@@ -97,10 +97,16 @@ export default class CustomVisualPickerList extends LightningElement {
         return className;
     }
     @api validate() {
-        const { picker, errorMessage } = this;
-        if (picker) {
+        const { errorMessage, required, pickers } = this;
+
+        if (required) {
+            const element = pickers.find(item => item.checked === true)
+            if (element) {
+                return { isValid: true };
+            }
+        } else {
             return { isValid: true };
         }
-        return { isValid: false, errorMessage };
+        return { isValid: false, errorMessage: errorMessage || 'Field is Required' };
     }
 }

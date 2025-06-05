@@ -13,6 +13,7 @@
             <property label="Visual Picker Collection" name="pickerListData" type="apex://DynamicOption[]" role="inputOnly"/>
             <property label="Last Selected Visual Picker" name="picker" type="apex://DynamicOption"/>
             <property label="Visual Picker Selected Collection" name="pickers" type="apex://DynamicOption[]"/>
+            <property label="Required" name="required" type="Boolean"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
