@@ -135,14 +135,7 @@ export default class DynamicCustomLookup extends LightningElement {
 
     @api
     validate() {
-        let isValid = true;
-        if (this._requiredConditioned) {
-            isValid = [...this.template.querySelectorAll('c-custom-lookup')]
-                .reduce((validSoFar, field) => {
-                    field.reportValidity();
-                    return validSoFar && field.checkValidity();
-                }, true);
-        }
+        let isValid = !this._requiredConditioned;
         return { isValid, errorMessage: this.errMsg || REQUIRED_FIELD };
     }
 
