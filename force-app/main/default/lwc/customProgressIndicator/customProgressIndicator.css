@@ -3,5 +3,6 @@
 }
 
 .blue-icon {
-    --sds-c-icon-color-foreground-default: #066afe
+    --sds-c-icon-color-foreground-default: #066afe;
+    --slds-c-icon-color-foreground-default: #066afe;
 }
