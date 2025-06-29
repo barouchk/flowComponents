@@ -39,7 +39,8 @@ export default class CustomPicklist extends LightningElement {
     @api
     validate() {
         // the component is required only when there is values in picklist
-        if (!this.disabled && this.required) {
+        // and also if there is options to select
+        if (!this.disabled && this.required && this.options.length > 0) {
             const isValid = this.isValueSelected;
             return { isValid, errorMessage: this.validationMessageByValidity[isValid] || 'Field is Required' };
         }
