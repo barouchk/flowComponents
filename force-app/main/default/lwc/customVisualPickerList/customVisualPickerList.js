@@ -26,7 +26,16 @@ export default class CustomVisualPickerList extends LightningElement {
             ...this.buildPickerItem(item, index)
         })) ?? [];
 
-        Object.assign(this, { visualPickers });
+        
+        let pickers = visualPickers.filter(item => item.checked === true).map((item) => ({
+            value: item.value,
+            icon: item.icon,
+            checked: item.checked,
+            label: item.label,
+            title: item.title
+        }));
+
+        Object.assign(this, { visualPickers, pickers });
     }
 
     setPickerChecked(value) {
@@ -45,7 +54,6 @@ export default class CustomVisualPickerList extends LightningElement {
         e.stopPropagation();
 
         const value = e.detail.value;
-        const picker = this.pickerListData.find(item => item.value === value);
 
         let visualPickers = []
 
@@ -56,6 +64,7 @@ export default class CustomVisualPickerList extends LightningElement {
         }
 
         this.visualPickers = visualPickers || []
+        
 
         let pickers = this.visualPickers.filter(item => item.checked === true).map((item) => ({
             value: item.value,
@@ -64,6 +73,9 @@ export default class CustomVisualPickerList extends LightningElement {
             label: item.label,
             title: item.title
         }));
+
+        const picker = pickers.find(item => item.value === value);
+
 
         Object.assign(this, { picker, pickers });
     }
