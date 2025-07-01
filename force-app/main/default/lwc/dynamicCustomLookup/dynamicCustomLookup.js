@@ -135,7 +135,14 @@ export default class DynamicCustomLookup extends LightningElement {
 
     @api
     validate() {
-        let isValid = !this._requiredConditioned;
+        let isValid = false
+        
+        if (this.isMultiSelect) {
+            isValid = this._selectedItemsMap.size > 0;
+        } else {
+            isValid = this.recordId != null && this.recordId != '';
+        }
+
         return { isValid, errorMessage: this.errMsg || REQUIRED_FIELD };
     }
 
