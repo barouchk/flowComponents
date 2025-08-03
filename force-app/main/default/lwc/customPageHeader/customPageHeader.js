@@ -12,8 +12,16 @@ export default class CustomPageHeader extends LightningElement {
     @api fields
 
     connectedCallback() {
+        this.populateFields()
+    }
+
+    populateFields() {
         if (this.fields) {
-            this._fields = JSON.parse(this.fields);
+            try {
+                this._fields = JSON.parse(this.fields);
+            } catch (e) {
+                this._fields = ''
+            }
         }
     }
 }
