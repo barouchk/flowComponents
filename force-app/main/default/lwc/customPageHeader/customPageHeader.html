@@ -1,26 +1,37 @@
 <template>
-    <div class="slds-page-header slds-m-bottom_small">
-        <div class="slds-page-header__row">
-          <div class="slds-page-header__col-title">
-            <div class="slds-media">
-              <div class="slds-media__figure">
-                <span class="slds-icon_container">
-                  <lightning-icon if:true={icon} icon-name={icon}></lightning-icon>
-                  <span class="slds-assistive-text">{title}</span>
-                </span>
-              </div>
-              <div class="slds-media__body">
-                <div class="slds-page-header__name">
-                  <div class="slds-page-header__name-title">
-                    <h1>
-                      <span class="slds-page-header__title slds-truncate" title={title}>{title}</span>
-                    </h1>
-                  </div>
-                </div>
-                <p class="slds-page-header__name-meta slds-text-heading_small">{subTitle}</p>
+  <div class="slds-page-header slds-m-bottom_small">
+    <div class="slds-page-header__row">
+      <div class="slds-page-header__col-title">
+        <div class="slds-media">
+          <div class="slds-media__figure">
+            <span class="slds-icon_container">
+              <lightning-icon if:true={icon} icon-name={icon}></lightning-icon>
+              <span class="slds-assistive-text">{title}</span>
+            </span>
+          </div>
+          <div class="slds-media__body">
+            <div class="slds-page-header__name">
+              <div class="slds-page-header__name-title">
+                <h1>
+                  <span class="slds-page-header__title slds-truncate" title={title}>{title}</span>
+                </h1>
               </div>
             </div>
+            <p class="slds-page-header__name-meta slds-text-heading_small">{subTitle}</p>
           </div>
         </div>
       </div>
+    </div>
+    <div class="slds-page-header__row slds-page-header__row_gutters" if:true={_fields}>
+      <div class="slds-page-header__col-details">
+        <ul class="slds-page-header__detail-row">
+          <li class="slds-page-header__detail-block" for:each={_fields} for:item="field" key={field.label}>
+            <div class="slds-text-title slds-truncate" title={field.label}>{field.label}</div>
+            <div class="slds-truncate" title={field.value}>
+              {field.value}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </template>

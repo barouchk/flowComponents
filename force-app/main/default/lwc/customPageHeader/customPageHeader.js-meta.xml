@@ -11,6 +11,7 @@
             <property label="Icon" name="icon" type="String" role="inputOnly"/>
             <property label="Title" name="title" type="String" role="inputOnly"/>
             <property label="Sub Title" name="subTitle" type="String" role="inputOnly"/>
+            <property label="Fields" name="fields" type="String" description="as json string: [{'label':'field1', 'value':'value1'}]"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
