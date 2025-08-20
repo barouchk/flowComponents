@@ -5,9 +5,10 @@
     <isExposed>true</isExposed>
     <targets>
         <target>lightning__RecordPage</target>
+        <target>lightning__HomePage</target>
     </targets>
     <targetConfigs>
-        <targetConfig targets="lightning__RecordPage">
+        <targetConfig targets="lightning__RecordPage,lightning__HomePage">
             <property label="Json Actions" name="jsonActions" type="String" description="example: [{label:'', value:'flowApiName'}]"/>
         </targetConfig>
     </targetConfigs>
