@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <isExposed>true</isExposed>
+
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="buttonLabel" type="String" label="Button Label" />
+            <property name="buttonVariant" type="String" label="Button Variant" />
+
+            <property name="modalHeader" type="String" label="Modal Header" />
+            <property name="modalMessage" type="String" label="Modal Message" />
+
+            <property name="confirmLabel" type="String" label="Confirm Button Label" />
+            <property name="confirmVariant" type="String" label="Confirm Button Variant" />
+
+            <property name="cancelLabel" type="String" label="Cancel Button Label" />
+            <property name="cancelVariant" type="String" label="Cancel Button Variant" />
+
+            <property name="prevLabel" type="String" label="Previous Button Label" />
+            <property name="prevVariant" type="String" label="Previous Button Variant" />
+
+            <property name="actionTriggered" type="String" role="inputOnly" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,41 @@
+<template>
+    <div class="confirmation-footer slds-grid slds-grid_align-end">
+        <lightning-button class="slds-m-horizontal_xx-small" label={prevLabel} variant={prevVariant}
+            onclick={backButtonClicked}>
+        </lightning-button>
+        <!-- Main Button -->
+        <lightning-button class="slds-m-horizontal_xx-small" label={buttonLabel} variant={buttonVariant}
+            onclick={openModal}>
+        </lightning-button>
+    </div>
+
+    <!-- Modal -->
+    <template if:true={isOpen}>
+        <section role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Header -->
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">{modalHeader}</h2>
+                </header>
+
+                <!-- Body -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <p>{modalMessage}</p>
+                </div>
+
+                <!-- Footer -->
+                <footer class="slds-modal__footer">
+                    <lightning-button class="slds-m-horizontal_xx-small" label={cancelLabel} variant={cancelVariant}
+                        onclick={closeModal}>
+                    </lightning-button>
+
+                    <lightning-button class="slds-m-horizontal_xx-small" label={confirmLabel} variant={confirmVariant}
+                        onclick={confirmAction}>
+                    </lightning-button>
+                </footer>
+
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>
