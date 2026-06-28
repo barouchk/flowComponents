@@ -1,0 +1,61 @@
+<template>
+    <main id="main" class="main formpage" tabindex="-1">
+        <div class="crumb">
+            <button class="crumb-link" type="button">הבקשות שלי</button><span class="sep">/</span><button class="crumb-link" type="button">מעקב הבקשה</button><span class="sep">/</span><b>מועמדות מוזיקאי מצטיין</b>
+        </div>
+        <div class="page-head">
+            <div class="formhead">
+                <div class="emb"><svg class="ic-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V6l11-2v12"></path><circle cx="6" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg></div>
+                <div class="ttl"><b>טופס מועמדות — מוזיקאי מצטיין תשפ״ו</b>
+                    <span class="org">מערכת מצטינים · אגף התרבות <span class="badge-st st-wait">השלמת פרטים</span></span>
+                    <div class="rid">מספר בקשה: <span class="bdi">M-2026-0042</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="stepper-wrap"><div class="stepper" role="list"><div class="step on clickable" role="listitem"><span class="c">1</span><span class="lbl">פרטים אישיים</span></div><div class="step" role="listitem"><span class="c">2</span><span class="lbl">הכשרה מקצועית</span></div><div class="step" role="listitem"><span class="c">3</span><span class="lbl">הישגים ומסמכים</span></div><div class="step" role="listitem"><span class="c">4</span><span class="lbl">רפרטואר לבחינה</span></div><div class="step" role="listitem"><span class="c">5</span><span class="lbl">הנחיות</span></div><div class="step" role="listitem"><span class="c">6</span><span class="lbl">סיכום ואישור</span></div></div></div>
+        <div class="note-box"><span class="ico"><svg class="ic-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 2.5 20h19z"></path><path d="M12 10v4"></path><circle cx="12" cy="17.3" r="0.6" fill="currentColor"></circle></svg></span><div><b>הערת המשרד (16.06):</b> נא להעלות <b>תעודת זהות (שני צדדים)</b>. שאר השדות בשלב זה נשמרו.</div></div>
+        <div class="req-note">שדות המסומנים בכוכבית (<span class="req">*</span>) הם שדות חובה</div>
+        <div class="form-sections">
+            <section class="form-card"><h3 class="form-sec"><svg class="ic-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-3.5 3.6-6 8-6s8 2.5 8 6"></path></svg> פרטים אישיים</h3><div class="info-box"><span class="ico"><svg class="ic-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 4 14h6l-1 7 9-11h-6z"></path></svg></span><div>שם, ת.ז ותאריך לידה מולאו ממערכת ההזדהות הממשלתית ואינם ניתנים לעריכה.</div></div><div class="row">
+                <div class="field"><label for="fld1"><span class="req">*</span> שם משפחה</label><input value="ברוידא" readonly id="fld1" aria-required="true"></div>
+                <div class="field"><label for="fld2"><span class="req">*</span> שם פרטי</label><input value="עופר" readonly id="fld2" aria-required="true"></div></div><div class="row">
+                <div class="field"><label for="fld3"><span class="req">*</span> מין</label><select id="fld3" aria-required="true"><option>בחר</option><option selected>זכר</option><option>נקבה</option></select></div>
+                <div class="field"><label for="fld4"><span class="req">*</span> ת.ז.</label><input class="bdi" value="065465884" readonly id="fld4" aria-required="true"></div></div><div class="row">
+                <div class="field"><label for="fld5"><span class="req">*</span> תאריך לידה</label><input class="bdi" value="12.04.1990" readonly id="fld5" aria-required="true"></div>
+                <div class="field" style="min-width:120px"><label for="fld6">גיל</label><input value="34" readonly placeholder="מחושב אוטומטית" id="fld6"></div>
+                <div class="field"><label for="fld7"><span class="req">*</span> ארץ לידה</label><input value="ישראל" id="fld7" aria-required="true"></div>
+                <div class="field" style="min-width:120px"><label for="fld8">שנת עלייה</label><input class="bdi" placeholder="אם רלוונטי" id="fld8"></div></div></section>
+            <section class="form-card"><h3 class="form-sec"><svg class="ic-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 9.5V21h14V9.5"></path><path d="M9.5 21v-6h5v6"></path></svg> כתובת קבועה</h3><div class="row">
+                <div class="field err"><label for="fld9"><span class="req">*</span> רחוב</label><input placeholder="שם הרחוב" id="fld9" aria-required="true"><span class="errmsg">שדה חובה</span></div>
+                <div class="field err" style="min-width:110px"><label for="fld10"><span class="req">*</span> מס׳ בית</label><input class="bdi" id="fld10" aria-required="true"><span class="errmsg">שדה חובה</span></div>
+                <div class="field" style="min-width:90px"><label for="fld11">דירה</label><input class="bdi" id="fld11"></div></div><div class="row">
+                <div class="field err"><label for="fld12"><span class="req">*</span> עיר</label><input placeholder="עיר מגורים" id="fld12" aria-required="true"><span class="errmsg">שדה חובה</span></div>
+                <div class="field"><label for="fld13">מיקוד</label><input class="bdi" id="fld13"></div></div></section>
+            <section class="form-card"><h3 class="form-sec"><svg class="ic-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 13l1 4v3a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1"></path></svg> פרטי קשר</h3><div class="row">
+                <div class="field"><label for="fld14"><span class="req">*</span> טלפון נייד</label><input class="bdi" value="050-1234567" inputmode="tel" id="fld14" aria-required="true"></div>
+                <div class="field"><label for="fld15"><span class="req">*</span> דוא״ל</label><input value="ofer@example.com" type="email" id="fld15" aria-required="true"></div></div><div class="row">
+                <div class="field"><label for="fld16">טלפון נוסף</label><input class="bdi" inputmode="tel" id="fld16"></div>
+                <div class="field"><label for="fld17">בעל הטלפון הנוסף</label><select id="fld17"><option>בחר</option><option>אבא</option><option>אמא</option><option>אפוטרופוס</option><option>אחר</option></select></div></div></section>
+            <section class="form-card"><h3 class="form-sec"><svg class="ic-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6z"></path></svg> מועמד לשירות</h3><div class="row">
+                <div class="field" style="flex:none;min-width:220px"><label for="fld18"><span class="req">*</span> סוג שירות</label>
+                    <div style="display:flex;gap:20px;padding-top:8px"><label class="check" style="margin:0"><input type="radio" name="svc" checked id="fld18" aria-required="true"><span>צבאי</span></label><label class="check" style="margin:0"><input type="radio" name="svc"><span>לאומי</span></label></div></div>
+                <div class="field err"><label for="fld19"><span class="req">*</span> תאריך גיוס</label><input class="bdi" placeholder="dd.mm.yyyy" id="fld19" aria-required="true"><span class="errmsg">שדה חובה</span></div></div><label class="check"><input type="checkbox"><span>עוד לא קיבלתי תאריך גיוס</span></label></section>
+            <section class="form-card"><h3 class="form-sec"><svg class="ic-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 0-3 3z"></path><path d="M5 20a3 3 0 0 1 3-3h11"></path></svg> לימודים כלליים</h3><div class="row">
+                <div class="field err"><label for="fld20"><span class="req">*</span> בית-ספר</label><input id="fld20" aria-required="true"><span class="errmsg">שדה חובה</span></div>
+                <div class="field err"><label for="fld21"><span class="req">*</span> יישוב</label><input id="fld21" aria-required="true"><span class="errmsg">שדה חובה</span></div>
+                <div class="field err" style="min-width:110px"><label for="fld22"><span class="req">*</span> כיתה</label><input id="fld22" aria-required="true"><span class="errmsg">שדה חובה</span></div></div><div class="row">
+                <div class="field"><label for="fld23">כתובת בית-הספר</label><input id="fld23"></div>
+                <div class="field"><label for="fld24">טלפון בית-הספר</label><input class="bdi" id="fld24"></div>
+                <div class="field"><label for="fld25">עיסוק אחר (אם לא בביה״ס)</label><input id="fld25"></div></div></section>
+            <section class="form-card"><h3 class="form-sec"><svg class="ic-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5 11.5 20a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7L9 12.5a1.6 1.6 0 0 1-2.3-2.3l7.3-7.3"></path></svg> העלאת מסמכים</h3><div class="row">
+                <div class="field"><label><span class="req">*</span> תמונת פספורט עדכנית</label><div class="filechip ok"><svg class="ic-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path></svg> passport.jpg <span class="ok-tag">הועלה <svg class="ic-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5 10 17l9-10"></path></svg></span><span class="x"><svg class="ic-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg></span></div>
+                    <div class="hint">JPG, PNG עד 5MB</div></div>
+                <div class="field err"><label><span class="req">*</span> תעודת זהות (שני צדדים)</label>
+                    <div class="dropzone req-miss"><span class="big"><svg class="ic-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M5 20h14"></path></svg></span>לחץ להעלאת קובץ · PDF עד 10MB</div>
+                    <span class="errmsg" style="display:block">שדה חובה — חסר מסמך.</span></div></div></section>
+        </div>
+        <div class="formfoot">
+            <button class="btn btn-ghost" type="button" disabled>→ שלב קודם</button>
+            <div class="acts">
+                <button class="btn btn-pri" type="button">המשך לשלב הבא ←</button></div></div></main>
+</template>
