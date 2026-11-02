@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <description>Flow Footer</description>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <masterLabel>Flow Footer</masterLabel>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="hideBack" type="Boolean" label="Hide Back" />
+            <property name="hideNext" type="Boolean" label="Hide Next" />
+
+            <property name="disableBack" type="Boolean" label="Disable Back" />        
+            <property name="disableNext" type="Boolean" label="Disable Next" />
+            
+            <property name="nextLabel" type="String" label="Next Label"  />
+            <property name="finishLabel" type="String" label="Finish Label" />
+            <property name="backLabel" type="String" label="Back Label"  />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

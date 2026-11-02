@@ -1,0 +1,24 @@
+<template>
+    <footer class={buttonsSpreadClass}>
+        <div class="actionsRight">
+            <lightning-button
+                    if:false={hideBack}
+                    disabled={disableBack}
+                    label={backLabel}
+                    title={backLabel}
+                    onclick={handleBack}>
+            </lightning-button>
+        </div>
+        <div class="actionsLeft">
+            <lightning-button
+                    if:false={hideNext}
+                    disabled={disableNext}
+                    variant="brand"
+                    label={nextButtonLabel}
+                    title={nextButtonLabel}
+                    onclick={handleNext}
+                    class="slds-p-left_xx-small">
+            </lightning-button>
+        </div>
+    </footer>
+</template>
